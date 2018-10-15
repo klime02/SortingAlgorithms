@@ -5,6 +5,7 @@ using namespace std;
 void insertionSort(int a[]);
 
 
+
 int main() {
 	//INPUT
 	vector<int> a(11);
