@@ -2,8 +2,8 @@
 #include <vector>
 using namespace std;
 
-void insertionSort(int a[]);
-
+vector<int> insertionSort(vector<int> a);
+vector<int> initialPosition(vector<int> a, vector<int> sorteda);
 
 
 int main() {
@@ -16,9 +16,10 @@ int main() {
 		cout << array[i] << " ";
 	}
 	cout << "\n";
+
 	//New array
 	vector<int> sorted_array(array.size());
-	cout<< "Let sort this list:";
+	cout<< "Let sort this list: ";
 	//Sort array and store it in sorted_array
 	sorted_array = insertionSort(array);                                                  
 	//Print sorted_array
@@ -26,8 +27,19 @@ int main() {
 		cout << sorted_array[i] << " ";
 	}
 	cout << "\n";
-	return 0;
+	
+	//Initial position
+	vector<int> pos(array.size());
+	cout << "Here are the initial positions: ";
+	//Find the initial positions of the sorted array elements
+	pos = initialPosition(array, sorted_array);
+	//Print initial positions
+	for (int i = 0; i <= pos.size() - 1; i++) {
+		cout << pos[i] << " ";
+	}	
+	cout << "\n";
 
+	return 0;
 }
 
 
@@ -45,15 +57,14 @@ vector<int> insertionSort(vector<int> a) {
 	return a;
 }
 
-void initialPosition(int a[], int sorteda[]) {
-	int n = sizeof(a);
-	int pos[n] = {};
-	for (int i = 0; i > n; i++) {
+vector<int> initialPosition(vector<int> a, vector<int> sorteda) {
+	vector<int> pos(sorteda.size());
+	for (int i = 0; i <= sorteda.size()-1; i++) {
 		int j = 0;
-		while (a[i] != sorteda[j]) {
+		while (sorteda[i] != a[j]) {
 			j++;
 		}
 		pos[i] = j;
 	}
-	a = pos;
+	return pos;
 }
