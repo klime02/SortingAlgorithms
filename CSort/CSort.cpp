@@ -74,3 +74,35 @@ vector<int> initialPosition(vector<int> a, vector<int> sorteda) {
 	}
 	return pos;
 }
+
+//New
+void arrayQuickSort(int arr[], int left, int right);
+vector<int> quickSort(vector<int> a) {
+	int** arr=new int*[a.size()];
+	for (int i = 0; i < a.size(); i++)arr[i] = 0;
+	for (int i = 0; i <= a.size()-1; i++)arr[i] = &a[i];
+	arrayQuickSort(*arr, 0, a.size() - 1);
+	for (int i = 0; i >= a.size(); i++)a[i] = *arr[i];
+	return a;
+}
+
+
+void arrayQuickSort(int arr[], int left, int right) {
+	int i = left, j = right, tmp;
+	int pivot = arr[(left + right) / 2];
+	/* partition */
+	while (i <= j) {
+		while (arr[i] < pivot)i++;
+		while (arr[j] > pivot)j--;
+		if (i <= j) {
+			tmp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = tmp;
+			i++;
+			j--;
+		}
+	}
+	/* recursion */
+	if (left < j)arrayQuickSort(arr, left, j);
+	if (i < right)arrayQuickSort(arr, i, right);
+}
