@@ -48,4 +48,11 @@ int main()
 		cout << InitialPosition[i] << " ";
 	}
 	cout << "\n";
+	vector<int> Quicksortedvector = quickSort(TestVector);
+	cout << "Quicksort of TestVector is: ";
+	for (int i = 0; i < Quicksortedvector.size(); i++)
+	{
+		cout << Quicksortedvector[i] << " ";
+	}
+	cout << "\n";
 }
