@@ -5,4 +5,5 @@ using namespace std;
 
 vector<int> insertionSort(vector<int> a);
 vector<int> initialPosition(vector<int> a, vector<int> sorteda);
+vector<int> quickSort(vector<int> a);
 #endif
