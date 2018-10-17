@@ -105,20 +105,31 @@ void IniPosTestInsertionSort(vector<int> TestVector, string tdn)
 int main()
 {
 	// Test vector data
+	vector<vector<int>> alldata;
 	vector<int> TD0{ 10,9,8,7,6,5,4,3,2,1 };
+	alldata.push_back(TD0);
 	vector<int> TD1{ 0,1,-1,2,-2,3,-3,4,-4,5,-5 };
+	alldata.push_back(TD1);
 	vector<int> TD2{ 5,5,3,3,4,4,2,2,1,1,0 };
-	vector<int> TD3{};
+	alldata.push_back(TD2);
+	vector<int> TD3{ 1,1,2 };
+	alldata.push_back(TD3);
 	vector<int> TD4{ 0,0,0,0,0,0,0,0,0,0 };
-	vector<int> TD5 = RandVector(10);
+	alldata.push_back(TD4);
+	vector<int> TD5 = RandVector(10000);
+	alldata.push_back(TD5);
 
-	//Begin Testing
-	EqualityTestInsertion(TD0, "TD0");
-	EqualityTestInsertion(TD1, "TD1");
-	EqualityTestInsertion(TD2, "TD2");
-	//EqualityTestInsertion(TD3, "TD3"); - CURRENTLY BROKEN
-	EqualityTestInsertion(TD4, "TD4");
-	EqualityTestInsertion(TD5, "TD5"); //Takes a very long time using Insertion Sort
-	EqualityTestQuicksort(TD5, "TD5");
+	//Begin Testing - Insertion Sort
+	for (unsigned int i = 0; i < alldata.size(); i++)
+	{
+		string tdn = "TD" + to_string(i);
+		EqualityTestInsertion(alldata[i], tdn);
+	}
+	//Begin Testing - Quicksort
+	for (unsigned int i = 0; i < alldata.size(); i++)
+	{
+		string tdn = "TD" + to_string(i);
+		EqualityTestQuicksort(alldata[i], tdn);
+	}
 	return 0;
 }
