@@ -5,10 +5,11 @@ using namespace std;
 bool sizes = true;
 bool sorted = true;
 bool values = true;
-void equalSizes(vector<int> a, vector<int> b, bool sizes);
-void isItSorted(vector<int> a, bool sorted);
-void equalValues(vector<int> a, vector<int> sorteda, bool values);
+void equalSizes(vector<int> a, vector<int> b);
+void isItSorted(vector<int> a);
+void equalValues(vector<int> a, vector<int> sorteda);
 void testPrint(bool sizes, bool sorted, bool values);
+void arrayQuickSort(int arr[], int left, int right);
 
 vector<int> insertionSort(vector<int> a) {
 	int x;
@@ -22,7 +23,7 @@ vector<int> insertionSort(vector<int> a) {
 		a[j]=x;
 	}
 	//Sort test
-	isItSorted(a, sorted);
+	isItSorted(a);
 	if (sorted == false){
 		cout << "The array has not been well sorted!" << "\n";
 		sorted = true;
@@ -33,9 +34,9 @@ vector<int> insertionSort(vector<int> a) {
 
 vector<int> initialPosition(vector<int> a, vector<int> sorteda) {
 	//test
-	equalSizes(a, sorteda, sizes);
-	isItSorted(sorteda, sorted);
-	equalValues(a, sorteda, values);
+	equalSizes(a, sorteda);
+	isItSorted(sorteda);
+	equalValues(a, sorteda);
 	
 	//print test results
 	testPrint(sizes, sorted, values);
@@ -71,7 +72,7 @@ vector<int> quickSort(vector<int> a) {
 	arrayQuickSort(*arr, 0, a.size() - 1);
 	for (int i = 0; i >= a.size(); i++)a[i] = *arr[i];
 	//Sort test
-	isItSorted(a, sorted);
+	isItSorted(a);
 	if (sorted == false) {
 		cout << "The array has not been well sorted!" << "\n";
 		sorted = true;
@@ -103,11 +104,11 @@ void arrayQuickSort(int arr[], int left, int right) {
 }
 
 //Tests
-void equalSizes(vector<int> a, vector<int> b,bool sizes) {
+void equalSizes(vector<int> a, vector<int> b) {
 	if (a.size() != b.size())sizes = false;
 }
 
-void isItSorted(vector<int> a, bool sorted) {
+void isItSorted(vector<int> a) {
 	int i = 1;
 	sorted = true;
 	while (i <= a.size() - 1 && sorted == true) {
@@ -116,7 +117,7 @@ void isItSorted(vector<int> a, bool sorted) {
 	}
 }
 
-void equalValues(vector<int> a, vector<int> sorteda, bool values) {//This function works only is the second function is the sorted version of the first one.
+void equalValues(vector<int> a, vector<int> sorteda) {//This function works only is the second function is the sorted version of the first one.
 	int size = 0;
 	int i = 0;
 	int j = 0;
@@ -137,7 +138,7 @@ void equalValues(vector<int> a, vector<int> sorteda, bool values) {//This functi
 
 //Print after tests
 void testPrint(bool sizes, bool sorted, bool values) {
-	if (sizes == false)cout << "Size problem" << "\n";
-	if (sorted == false)cout << "Sort problem" << "\n";
-	if (values == false)cout << "Value problem" << "\n";
+	if (::sizes == false)cout << "Size problem" << "\n";
+	if (::sorted == false)cout << "Sort problem" << "\n";
+	if (::values == false)cout << "Value problem" << "\n";
 }
