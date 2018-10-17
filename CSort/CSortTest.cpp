@@ -8,7 +8,7 @@
 using namespace std;
 
 
-
+//Fills a vector of size n with random integers in range 0-n
 vector<int> RandVector(int n)
 {
 	vector<int> tempvector;
@@ -64,6 +64,7 @@ void EqualityTestQuicksort(vector<int> TestVector, string tdn)
 	}
 }
 
+//Initial Position funciton test - only works with stable sorting algorithms
 void IniPosTestInsertionSort(vector<int> TestVector, string tdn)
 {
 	string fname = "Initial Position Test (Insertion Sort)";
@@ -104,8 +105,8 @@ int main()
 	EqualityTestInsertion(TD0, "TD0");
 	EqualityTestInsertion(TD1, "TD1");
 	EqualityTestInsertion(TD2, "TD2");
-	//EqualityTestInsertion(TD3, "TD3");
+	//EqualityTestInsertion(TD3, "TD3"); - CURRENTLY BROKEN
 	EqualityTestInsertion(TD4, "TD4");
-	EqualityTestInsertion(TD5, "TD5");
+	EqualityTestInsertion(TD5, "TD5"); //Takes a very long time using Insertion Sort
 	return 0;
 }
