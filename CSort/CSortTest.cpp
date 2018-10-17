@@ -15,7 +15,7 @@ vector<int> RandVector(int n)
 {
 	vector<int> tempvector;
 	default_random_engine generator;
-	uniform_int_distribution<int> distribution(1, n);
+	uniform_int_distribution<int> distribution(-n/2, n/2);
 	for (int i = 0; i < n; i++)
 	{
 		int number = distribution(generator);
@@ -27,12 +27,12 @@ vector<int> RandVector(int n)
 
 void PassTestOutput(string fname, string tdn)
 {
-	cout << "Test " << fname << " using " << tdn << " PASSED\n";
+	cout << fname << " using " << tdn << " PASSED\n";
 }
 
 void FailTestOutput(string fname, string tdn)
 {
-	cout << "Test " << fname << " using " << tdn << " FAILED\n";
+	cout << fname << " using " << tdn << " FAILED\n";
 }
 
 void EqualityTestInsertion(vector<int> TestVector, string tdn)
@@ -130,6 +130,13 @@ int main()
 	{
 		string tdn = "TD" + to_string(i);
 		EqualityTestQuicksort(alldata[i], tdn);
+	}
+
+	//Begin Testing - Initial Position Insertion Sort
+	for (unsigned int i = 0; i < alldata.size(); i++)
+	{
+		string tdn = "TD" + to_string(i);
+		IniPosTestInsertionSort(alldata[i], tdn);
 	}
 	return 0;
 }
