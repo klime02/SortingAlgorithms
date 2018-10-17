@@ -28,6 +28,15 @@ vector<int> initialPosition(vector<int> a, vector<int> sorteda) {
 	isItSorted(sorteda, sorted);
 	equalValues(a, sorteda, values);
 	
+	//print test results
+	testPrint(sizes, sorted, values);
+
+	//reaction to the test
+	if (sizes == false || sorted == false || values == false) {
+		vector<int> empty(0);
+		return empty;
+	}
+
 	//initialPosition
 	vector<int> pos(sorteda.size());
 	int j = 0;
@@ -108,4 +117,11 @@ void equalValues(vector<int> a, vector<int> sorteda, bool values) {//This functi
 		i++;
 	}
 	if(size!=a.size() || size != sorteda.size())values = false;
+}
+
+//Print after tests
+void testPrint(bool sizes, bool sorted, bool values) {
+	if (sizes == false)cout << "Size problem" << "\n";
+	if (sorted == false)cout << "Sort problem" << "\n";
+	if (values == false)cout << "Value problem" << "\n";
 }
