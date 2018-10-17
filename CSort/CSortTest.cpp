@@ -101,6 +101,22 @@ void IniPosTestInsertionSort(vector<int> TestVector, string tdn)
 
 }
 
+void IniPosInsertionBadData(vector<int> v1, vector<int> v2)
+{
+	string fname = "Initial Position Test (Insertion Sort) - Bad Data";
+	string tdn = "Bad Data";
+	vector<int> emptyvector{};
+	vector<int> tempvector = initialPosition( v1, v2 );
+	if (tempvector == emptyvector)
+	{
+		PassTestOutput(fname, tdn);
+	}
+	else
+	{
+		FailTestOutput(fname, tdn);
+	}
+}
+
 
 int main()
 {
@@ -116,7 +132,7 @@ int main()
 	alldata.push_back(TD3);
 	vector<int> TD4{ 0,0,0,0,0,0,0,0,0,0 };
 	alldata.push_back(TD4);
-	vector<int> TD5 = RandVector(10000);
+	vector<int> TD5 = RandVector(100);
 	alldata.push_back(TD5);
 
 	//Begin Testing - Insertion Sort
@@ -137,6 +153,19 @@ int main()
 	{
 		string tdn = "TD" + to_string(i);
 		IniPosTestInsertionSort(alldata[i], tdn);
+	}
+
+	//Bad Data
+	vector<vector<int>> BadData;
+	vector<int> BD0 = { 2,4,6,5,7,8 };
+	BadData.push_back(BD0);
+	vector<int> BD1 = { 2,4,6,5,8 };
+	BadData.push_back(BD1);
+
+	//Bad Data Testing
+	for (unsigned int i = 0; i < BadData.size()-1; i++)
+	{
+		IniPosInsertionBadData(BadData[i], BadData[i + 1]);
 	}
 	return 0;
 }

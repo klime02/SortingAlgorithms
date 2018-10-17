@@ -8,6 +8,7 @@ bool values = true;
 void equalSizes(vector<int> a, vector<int> b, bool sizes);
 void isItSorted(vector<int> a, bool sorted);
 void equalValues(vector<int> a, vector<int> sorteda, bool values);
+void testPrint(bool sizes, bool sorted, bool values);
 vector<int> insertionSort(vector<int> a) {
 	int x;
 	for (int i=0; i <= a.size()-1; i++) {
@@ -27,7 +28,6 @@ vector<int> initialPosition(vector<int> a, vector<int> sorteda) {
 	equalSizes(a, sorteda, sizes);
 	isItSorted(sorteda, sorted);
 	equalValues(a, sorteda, values);
-	
 	//print test results
 	testPrint(sizes, sorted, values);
 
@@ -88,14 +88,18 @@ void arrayQuickSort(int arr[], int left, int right) {
 
 //Tests
 void equalSizes(vector<int> a, vector<int> b,bool sizes) {
-	if (a.size() != b.size())sizes = false;
+	if (a.size() != b.size())
+	{
+		::sizes = false;
+
+	}
 }
 
 void isItSorted(vector<int> a, bool sorted) {
 	int i = 1;
-	sorted = true;
-	while (i <= a.size() - 1 && sorted == true) {
-		if (a[i] < a[i - 1])sorted = false;
+	::sorted = true;
+	while (i <= a.size() - 1 && ::sorted == true) {
+		if (a[i] < a[i - 1])::sorted = false;
 		i++;
 	}
 }
@@ -104,7 +108,7 @@ void equalValues(vector<int> a, vector<int> sorteda, bool values) {//This functi
 	int size = 0;
 	int i = 0;
 	int j = 0;
-	while (i <= sorteda.size() - 1 && values==true) {
+	while (i <= sorteda.size() - 1 && ::values==true) {
 		if (i >= 1) {
 			if (sorteda[i] == sorteda[i - 1])j++;
 			else j = 0;
@@ -113,10 +117,10 @@ void equalValues(vector<int> a, vector<int> sorteda, bool values) {//This functi
 			j++;
 		}
 		if(sorteda[i] == a[j])size++;
-		if (j > a.size() - 1)values = false;
+		if (j > a.size() - 1)::values = false;
 		i++;
 	}
-	if(size!=a.size() || size != sorteda.size())values = false;
+	if(size!=a.size() || size != sorteda.size())::values = false;
 }
 
 //Print after tests
