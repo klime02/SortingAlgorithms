@@ -5,7 +5,9 @@ using namespace std;
 bool sizes = true;
 bool sorted = true;
 bool values = true;
-
+void equalSizes(vector<int> a, vector<int> b, bool sizes);
+void isItSorted(vector<int> a, bool sorted);
+void equalValues(vector<int> a, vector<int> sorteda, bool values);
 vector<int> insertionSort(vector<int> a) {
 	int x;
 	for (int i=0; i <= a.size()-1; i++) {

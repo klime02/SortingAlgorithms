@@ -4,8 +4,10 @@
 #include<string>
 #include<algorithm>
 #include<random>
+#include<chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 
 //Fills a vector of size n with random integers in range 0-n
@@ -22,6 +24,7 @@ vector<int> RandVector(int n)
 	return tempvector;
 }
 
+
 void PassTestOutput(string fname, string tdn)
 {
 	cout << "Test " << fname << " using " << tdn << " PASSED\n";
@@ -37,10 +40,14 @@ void EqualityTestInsertion(vector<int> TestVector, string tdn)
 	string fname = "Equality Test (Insertion Sort)";
 	vector<int> tempvector = TestVector;
 	sort(tempvector.begin(), tempvector.end());
+	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	vector<int> CustomSort = insertionSort(TestVector);
+	high_resolution_clock::time_point t2 = high_resolution_clock::now();
 	if (tempvector == CustomSort)
 	{
 		PassTestOutput(fname, tdn);
+		auto duration = duration_cast<microseconds>(t2 - t1).count();
+		cout << "Duration: " << duration << " microseconds" << "\n";
 	}
 	else
 	{
@@ -53,10 +60,14 @@ void EqualityTestQuicksort(vector<int> TestVector, string tdn)
 	string fname = "Equality Test (Quicksort)";
 	vector<int> tempvector = TestVector;
 	sort(tempvector.begin(), tempvector.end());
+	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	vector<int> CustomSort = quickSort(TestVector);
+	high_resolution_clock::time_point t2 = high_resolution_clock::now();
 	if (tempvector == CustomSort)
 	{
 		PassTestOutput(fname, tdn);
+		auto duration = duration_cast<microseconds>(t2 - t1).count();
+		cout << "Duration: " << duration << " microseconds" << "\n";
 	}
 	else
 	{
@@ -71,7 +82,7 @@ void IniPosTestInsertionSort(vector<int> TestVector, string tdn)
 	vector<int> tempvector = insertionSort(TestVector);
 	vector<int> tempinpos = initialPosition(TestVector, tempvector);
 	bool validsort = true;
-	for (int i = 0; i < TestVector.size(); i++)
+	for (unsigned int i = 0; i < TestVector.size(); i++)
 	{
 		if (TestVector[tempinpos[i]] != tempvector[i])
 		{
@@ -99,7 +110,7 @@ int main()
 	vector<int> TD2{ 5,5,3,3,4,4,2,2,1,1,0 };
 	vector<int> TD3{};
 	vector<int> TD4{ 0,0,0,0,0,0,0,0,0,0 };
-	vector<int> TD5 = RandVector(50000);
+	vector<int> TD5 = RandVector(10);
 
 	//Begin Testing
 	EqualityTestInsertion(TD0, "TD0");
@@ -108,5 +119,6 @@ int main()
 	//EqualityTestInsertion(TD3, "TD3"); - CURRENTLY BROKEN
 	EqualityTestInsertion(TD4, "TD4");
 	EqualityTestInsertion(TD5, "TD5"); //Takes a very long time using Insertion Sort
+	EqualityTestQuicksort(TD5, "TD5");
 	return 0;
 }
