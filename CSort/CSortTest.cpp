@@ -132,7 +132,7 @@ int main()
 	alldata.push_back(TD3);
 	vector<int> TD4{ 0,0,0,0,0,0,0,0,0,0 };
 	alldata.push_back(TD4);
-	vector<int> TD5 = RandVector(100);
+	vector<int> TD5 = RandVector(1000);
 	alldata.push_back(TD5);
 
 	//Begin Testing - Insertion Sort
